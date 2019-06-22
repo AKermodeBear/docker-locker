@@ -5,15 +5,14 @@ docker-locker is intended to be an easy-to-use way to user docker in conjunction
 You will need Docker running in swarm mode. It works with Docker v18.06.1 and will probably work just fine with anything else more modern than that.
 
 # Getting Started
-Clone this repository, hop into the directory, copy your locker.json config file down (and make any necessary changes), build your images, then start up your swarm (generating database secrets along the way if necessary):
+Clone this repository, hop into the directory, build your images, then start up your swarm (generating database secrets along the way if necessary):
 
 `git clone git@github.com:AKermodeBear/docker-locker.git`
 `cd docker-locker`
-`cp Locker/config/locker.json .`
 `./build`
 `./start`
 
-When setting up your locker.json file, the database settings will automatically be updated as necessary, do you don't have to worry about that.
+The database settings will automatically be updated from docker secrets when the containers start up, so you don't need to worry about that. Any other changes you'd like to make to your configuration should be done in the Locker/config/locker.json file when building the images.
 
 If you have PHP's composer installed, then the build script will install any required dependencies. If you don't have composer, that's okay. It will run composer in a disposable docker container and do its magic.
 
@@ -28,4 +27,4 @@ This will do a few things:
 1. The various directories in the Locker repository will be mounted as volumes inside of the www container. You can make changes and they will be reflected inside of the container.
 2. PHPMyAdmin will be started on port 4001. You can use the 'root' or 'locker' user with the corresponding password in your 'secrets' directory.
 
-Note that this will use the same Docker volume for the database as the non-dev version. 
+Note that this will use the same Docker volume for the database as the non-dev version.
