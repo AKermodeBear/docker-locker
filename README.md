@@ -13,6 +13,8 @@ Clone this repository, hop into the directory, copy your locker.json config file
 `./build`
 `./start`
 
+When setting up your locker.json file, the database settings will automatically be updated as necessary, do you don't have to worry about that.
+
 If you have PHP's composer installed, then the build script will install any required dependencies. If you don't have composer, that's okay. It will run composer in a disposable docker container and do its magic.
 
 By default, the web service runs on port 4000. You probably want to change this for a real production system. It's in stack.yml.
