@@ -1,0 +1,4 @@
+cp misc/docker-update.sh Locker/
+chmod a+x Locker/docker-update.sh
+docker run -it --env GID=$(id -g) --env UID=$(id -u) -v $(pwd)/Locker:/Locker php:7.2-cli /Locker/docker-update.sh
+rm Locker/docker-update.sh
