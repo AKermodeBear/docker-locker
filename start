@@ -1,0 +1,16 @@
+#!/bin/bash
+if [ ! -f secrets/db.root.pass ]; then
+	mkdir -p secrets;
+	tr -cd '[:alnum:]' < /dev/urandom | fold -w30 | head -n 1 > secrets/db.root.pass;
+fi
+
+if [ ! -f secrets/db.user.pass ]; then
+	mkdir -p secrets;
+	tr -cd '[:alnum:]' < /dev/urandom | fold -w30 | head -n 1 > secrets/db.user.pass;
+fi
+
+if [ "$1" == "dev" ]; then
+	MYSQL_ROOT_PASS=$(cat secrets/db.root.pass) docker stack deploy -c stack.yml -c stack-dev.yml lockerdev;
+else
+	docker stack deploy -c stack.yml locker;
+fi

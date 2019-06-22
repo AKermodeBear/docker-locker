@@ -1,0 +1,17 @@
+version: "3.6"
+
+services:
+  www:
+    volumes:
+      - ./Locker/public:/var/www/html
+      - ./Locker/config:/var/www/config
+      - ./Locker/vendor:/var/www/vendor
+      - ./Locker/src:/var/www/src
+      - ./Locker/misc:/var/www/misc
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - "4001:80"
+    environment:
+      PMA_USER: root
+      PMA_PASSWORD: ${MYSQL_ROOT_PASS}

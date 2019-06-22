@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ "$1" == "dev" ]; then
+	docker stack down lockerdev;
+else
+	docker stack down locker;
+fi

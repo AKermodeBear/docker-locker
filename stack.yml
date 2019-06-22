@@ -1,0 +1,34 @@
+version: "3.6"
+
+services:
+  www:
+    image: locker-docker/www:latest
+    secrets:
+      - db.user.pass
+    ports:
+      - 4000:80
+  db:
+    image: locker-docker/db:latest
+    environment:
+      MYSQL_DATABASE: locker
+      MYSQL_USER: locker
+      MYSQL_PASSWORD_FILE: /var/run/secrets/db.user.pass
+      MYSQL_ROOT_PASSWORD_FILE: /var/run/secrets/db.root.pass
+    volumes:
+      - dbvolume:/var/lib/mysql
+    secrets:
+      - db.user.pass
+      - db.root.pass
+
+secrets:
+  db.root.pass:
+    file: ./secrets/db.root.pass
+  db.user.pass:
+    file: ./secrets/db.user.pass
+
+volumes:
+  dbvolume: {}
+
+networks:
+  default:
+    attachable: true
