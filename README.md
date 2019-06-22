@@ -5,10 +5,11 @@ docker-locker is intended to be an easy-to-use way to user docker in conjunction
 You will need Docker running in swarm mode. It works with Docker v18.06.1 and will probably work just fine with anything else more modern than that.
 
 # Getting Started
-Clone this repository, hop into the directory, build your images, then start up your swarm (generating database secrets along the way if necessary):
+Clone this repository, hop into the directory, copy your locker.json config file down (and make any necessary changes), build your images, then start up your swarm (generating database secrets along the way if necessary):
 
 `git clone git@github.com:AKermodeBear/docker-locker.git`
 `cd docker-locker`
+`cp Locker/config/locker.json .`
 `./build`
 `./start`
 
